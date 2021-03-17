@@ -5,7 +5,8 @@
 # Home page
 GET     /                                   controllers.VMServerController.setCredentials(request: Request)
 GET     /listvms                            controllers.VMServerController.listVMs()
-GET     /startvm/:vmId                    controllers.VMServerController.startVM(vmId: String)
+GET     /vm                                 controllers.VMServerController.getVMState(vmId: String, name: String)
+GET     /startvm/:vmId                      controllers.VMServerController.startVM(vmId: String)
 GET     /stopvm/:vmName                     controllers.VMServerController.stopVM(vmName: String)
 GET     /suspendvm/:vmName                  controllers.VMServerController.suspendVM(vmName: String)
 GET     /resetvm/:vmName                    controllers.VMServerController.resetVM(vmName: String)

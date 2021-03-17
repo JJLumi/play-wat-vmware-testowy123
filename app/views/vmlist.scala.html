@@ -6,26 +6,13 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Cpu Count</th>
-      <th>Memory Size MiB</th>
-      <th>Power State</th>
       <th>Actions</th>
     </tr>
     @for(vm <- vms){
     <tr>
       <td>@{vm.getId}</td>
       <td>@{vm.getName}</td>
-      <td>todo</td>
-      <td>todo</td>
-      <td>todo</td>
-      <td>
-        <ul>
-          <li><a href="@controllers.routes.VMServerController.startVM(vm.getId)">Start</a></li>
-          <li><a href="@controllers.routes.VMServerController.stopVM(vm.getId)">Stop</a></li>
-          <li><a href="@controllers.routes.VMServerController.suspendVM(vm.getId)">Suspend</a></li>
-          <li><a href="@controllers.routes.VMServerController.resetVM(vm.getId)">Reset</a></li>
-        </ul>
-      </td>
+      <td><a href="@controllers.routes.VMServerController.getVMState(vm.getId, vm.getName)">Edit</a></td>
     </tr>
     }
   </table>

@@ -11,6 +11,7 @@ import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
 
 import java.io.Console;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -77,6 +78,7 @@ public class SSHService {
             ssh.disconnect();
         }
     }
+
     public void startVM(String vmID) throws IOException {
         final SSHClient ssh = new SSHClient();
         ssh.addHostKeyVerifier(new PromiscuousVerifier());
@@ -91,7 +93,6 @@ public class SSHService {
             cmd.join(5, TimeUnit.SECONDS);
             System.out.println(res);
             con.writer().print("\n** exit status: " + cmd.getExitStatus());
-
         } finally {
             try {
                 if (session != null) {
@@ -103,6 +104,7 @@ public class SSHService {
             ssh.disconnect();
         }
     }
+
     public void sotopVM(String vmID) throws IOException {
         final SSHClient ssh = new SSHClient();
         ssh.addHostKeyVerifier(new PromiscuousVerifier());
@@ -143,7 +145,6 @@ public class SSHService {
             cmd.join(5, TimeUnit.SECONDS);
             System.out.println(res);
             con.writer().print("\n** exit status: " + cmd.getExitStatus());
-
         } finally {
             try {
                 if (session != null) {
@@ -155,6 +156,7 @@ public class SSHService {
             ssh.disconnect();
         }
     }
+
     public void resetVM(String vmID) throws IOException {
         final SSHClient ssh = new SSHClient();
         ssh.addHostKeyVerifier(new PromiscuousVerifier());
@@ -195,10 +197,9 @@ public class SSHService {
             result.add(new VMInfo(vmarray[1], vmarray[0]));
         }
         return result;
-
     }
 
-    public VMPowerState powerCheck(String VMid) throws IOException {
+    public VMPowerState getVMState(String vmId, String name) throws IOException {
         final SSHClient ssh = new SSHClient();
         ssh.addHostKeyVerifier(new PromiscuousVerifier());
         ssh.connect(connection.getServer(), connection.getPort());
@@ -207,12 +208,12 @@ public class SSHService {
         try {
             ssh.authPassword(connection.getUsername(), connection.getPassword());
             session = ssh.startSession();
-            final Command cmd = session.exec("vim-cmd vmsvc/power.getstate " + VMid); //tutaj przekazać VMid
+            final Command cmd = session.exec("vim-cmd vmsvc/power.getstate " + vmId); //tutaj przekazać VMid
             pow = IOUtils.readFully(cmd.getInputStream()).toString();
             cmd.join(5, TimeUnit.SECONDS);
             System.out.println(pow);
             con.writer().print("\n** exit status: " + cmd.getExitStatus());
-            return stringToPowerState(pow);
+            return stringToPowerState(vmId, name, pow);
         } finally {
             try {
                 if (session != null) {
@@ -225,7 +226,8 @@ public class SSHService {
         }
     }
 
-    private VMPowerState stringToPowerState(String res) {
-        return new VMPowerState(""); //todo: convert string to power state obj
+    private VMPowerState stringToPowerState(String vmId, String vmName, String res) {
+        String state = res; //todo: wyciągnij z wyniku komendy 'res' sam state wirtualnej  maszyny
+        return new VMPowerState(vmId, vmName, state);
     }
 }

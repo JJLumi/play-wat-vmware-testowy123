@@ -114,5 +114,17 @@ public class VMServerController extends Controller {
         }
     }
 
+    public Result getVMState(String vmId, String name) {
+        System.out.println("GET VM State: " + vmId);
+        System.out.println("VM Conn: " + vmConnection);
+        VMPowerState state = null;
+        try {
+            SSHService ssh = new SSHService(vmConnection);
+            state = ssh.getVMState(vmId, name);
+        } finally {
+            return ok(views.html.vmstate.render(state));
+        }
+    }
+
 }
 

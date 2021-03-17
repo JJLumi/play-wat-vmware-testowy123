@@ -1,0 +1,33 @@
+@(vm: VMPowerState)
+
+@main("VMware VM List") {
+    <div>
+        <table style="width: 100%">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>@{
+                    vm.getId
+                }</td>
+                <td>@{
+                    vm.getName
+                }</td>
+                <td>@{
+                    vm.getStatus
+                }</td>
+                <td>
+                    <ul>
+                        <li><a href="@controllers.routes.VMServerController.startVM(vm.getId)">Start</a></li>
+                        <li><a href="@controllers.routes.VMServerController.stopVM(vm.getId)">Stop</a></li>
+                        <li><a href="@controllers.routes.VMServerController.suspendVM(vm.getId)">Suspend</a></li>
+                        <li><a href="@controllers.routes.VMServerController.resetVM(vm.getId)">Reset</a></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
