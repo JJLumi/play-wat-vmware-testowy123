@@ -2,13 +2,17 @@
 
 @main("VMware VM List") {
     <div>
-        <table style="width: 100%">
+        <h2>VM Details for: @{vm.getName}</h2>
+        <table class="styled-table" style="width: 100%">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Actions</th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td>@{
                     vm.getId
@@ -28,6 +32,7 @@
                     </ul>
                 </td>
             </tr>
+            </tbody>
         </table>
     </div>
 }

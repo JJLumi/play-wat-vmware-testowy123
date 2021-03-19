@@ -1,20 +1,29 @@
-@(vms: Seq[models.VMInfo])
+@(vms: Seq[models.VMInfo], server: String)
 
-@main("VMware VM List") {
-<div>
-  <table style="width:100%">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-    @for(vm <- vms){
-    <tr>
-      <td>@{vm.getId}</td>
-      <td>@{vm.getName}</td>
-      <td><a href="@controllers.routes.VMServerController.getVMState(vm.getId, vm.getName)">Edit</a></td>
-    </tr>
+    @main("VMware VM List") {
+        <div>
+            <h2>VM List at @server</h2>
+            <table class="styled-table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @for(vm <- vms) {
+                    <tr>
+                        <td>@{
+                            vm.getId
+                        }</td>
+                        <td>@{
+                            vm.getName
+                        }</td>
+                        <td><a href="@controllers.routes.VMServerController.getVMState(vm.getId, vm.getName)">Edit</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
     }
-  </table>
-</div>
-}
