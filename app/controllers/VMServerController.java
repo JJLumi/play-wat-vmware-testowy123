@@ -60,9 +60,9 @@ public class VMServerController extends Controller {
             infos = ssh.listVms();
         } catch (Exception ex) {
             logger.error("ERROR: " + ex.getMessage());
-            return ok(views.html.vmlist.render(asScala(infos)));
+            return ok(views.html.vmlist.render(asScala(infos), vmConnection.getServer()));
         } finally {
-            return ok(views.html.vmlist.render(asScala(infos)));
+            return ok(views.html.vmlist.render(asScala(infos), vmConnection.getServer()));
         }
     }
 
