@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/Lumi/Desktop/18.01/play-wat-vmware-testowy/play-wat-vmware-testowy/conf/routes
-// @DATE:Sat Mar 06 16:46:05 CET 2021
+// @DATE:Fri Mar 19 07:54:25 CET 2021
 
 package router
 
@@ -16,9 +16,9 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   VMServerController_1: controllers.VMServerController,
-  // @LINE:14
+  // @LINE:15
   WidgetController_0: controllers.WidgetController,
-  // @LINE:18
+  // @LINE:19
   Assets_2: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -27,9 +27,9 @@ class Routes(
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
     VMServerController_1: controllers.VMServerController,
-    // @LINE:14
+    // @LINE:15
     WidgetController_0: controllers.WidgetController,
-    // @LINE:18
+    // @LINE:19
     Assets_2: controllers.Assets
   ) = this(errorHandler, VMServerController_1, WidgetController_0, Assets_2, "/")
 
@@ -46,6 +46,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.VMServerController.setCredentials(request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """listvms""", """controllers.VMServerController.listVMs()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """vm""", """controllers.VMServerController.getVMState(vmId:String, name:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """startvm/""" + "$" + """vmId<[^/]+>""", """controllers.VMServerController.startVM(vmId:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """stopvm/""" + "$" + """vmName<[^/]+>""", """controllers.VMServerController.stopVM(vmName:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """suspendvm/""" + "$" + """vmName<[^/]+>""", """controllers.VMServerController.suspendVM(vmName:String)"""),
@@ -99,10 +100,28 @@ class Routes(
   )
 
   // @LINE:8
-  private[this] lazy val controllers_VMServerController_startVM2_route = Route("GET",
+  private[this] lazy val controllers_VMServerController_getVMState2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("vm")))
+  )
+  private[this] lazy val controllers_VMServerController_getVMState2_invoker = createInvoker(
+    VMServerController_1.getVMState(fakeValue[String], fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.VMServerController",
+      "getVMState",
+      Seq(classOf[String], classOf[String]),
+      "GET",
+      this.prefix + """vm""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:9
+  private[this] lazy val controllers_VMServerController_startVM3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("startvm/"), DynamicPart("vmId", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VMServerController_startVM2_invoker = createInvoker(
+  private[this] lazy val controllers_VMServerController_startVM3_invoker = createInvoker(
     VMServerController_1.startVM(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -116,11 +135,11 @@ class Routes(
     )
   )
 
-  // @LINE:9
-  private[this] lazy val controllers_VMServerController_stopVM3_route = Route("GET",
+  // @LINE:10
+  private[this] lazy val controllers_VMServerController_stopVM4_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("stopvm/"), DynamicPart("vmName", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VMServerController_stopVM3_invoker = createInvoker(
+  private[this] lazy val controllers_VMServerController_stopVM4_invoker = createInvoker(
     VMServerController_1.stopVM(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -134,11 +153,11 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private[this] lazy val controllers_VMServerController_suspendVM4_route = Route("GET",
+  // @LINE:11
+  private[this] lazy val controllers_VMServerController_suspendVM5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("suspendvm/"), DynamicPart("vmName", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VMServerController_suspendVM4_invoker = createInvoker(
+  private[this] lazy val controllers_VMServerController_suspendVM5_invoker = createInvoker(
     VMServerController_1.suspendVM(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -152,11 +171,11 @@ class Routes(
     )
   )
 
-  // @LINE:11
-  private[this] lazy val controllers_VMServerController_resetVM5_route = Route("GET",
+  // @LINE:12
+  private[this] lazy val controllers_VMServerController_resetVM6_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("resetvm/"), DynamicPart("vmName", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_VMServerController_resetVM5_invoker = createInvoker(
+  private[this] lazy val controllers_VMServerController_resetVM6_invoker = createInvoker(
     VMServerController_1.resetVM(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -170,11 +189,11 @@ class Routes(
     )
   )
 
-  // @LINE:14
-  private[this] lazy val controllers_WidgetController_listWidgets6_route = Route("GET",
+  // @LINE:15
+  private[this] lazy val controllers_WidgetController_listWidgets7_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("widgets")))
   )
-  private[this] lazy val controllers_WidgetController_listWidgets6_invoker = createInvoker(
+  private[this] lazy val controllers_WidgetController_listWidgets7_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
       WidgetController_0.listWidgets(fakeValue[play.mvc.Http.Request]),
@@ -190,11 +209,11 @@ class Routes(
     )
   )
 
-  // @LINE:15
-  private[this] lazy val controllers_WidgetController_createWidget7_route = Route("POST",
+  // @LINE:16
+  private[this] lazy val controllers_WidgetController_createWidget8_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("widgets")))
   )
-  private[this] lazy val controllers_WidgetController_createWidget7_invoker = createInvoker(
+  private[this] lazy val controllers_WidgetController_createWidget8_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
       WidgetController_0.createWidget(fakeValue[play.mvc.Http.Request]),
@@ -210,11 +229,11 @@ class Routes(
     )
   )
 
-  // @LINE:18
-  private[this] lazy val controllers_Assets_versioned8_route = Route("GET",
+  // @LINE:19
+  private[this] lazy val controllers_Assets_versioned9_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned8_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned9_invoker = createInvoker(
     Assets_2.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -245,47 +264,53 @@ class Routes(
       }
   
     // @LINE:8
-    case controllers_VMServerController_startVM2_route(params@_) =>
-      call(params.fromPath[String]("vmId", None)) { (vmId) =>
-        controllers_VMServerController_startVM2_invoker.call(VMServerController_1.startVM(vmId))
+    case controllers_VMServerController_getVMState2_route(params@_) =>
+      call(params.fromQuery[String]("vmId", None), params.fromQuery[String]("name", None)) { (vmId, name) =>
+        controllers_VMServerController_getVMState2_invoker.call(VMServerController_1.getVMState(vmId, name))
       }
   
     // @LINE:9
-    case controllers_VMServerController_stopVM3_route(params@_) =>
-      call(params.fromPath[String]("vmName", None)) { (vmName) =>
-        controllers_VMServerController_stopVM3_invoker.call(VMServerController_1.stopVM(vmName))
+    case controllers_VMServerController_startVM3_route(params@_) =>
+      call(params.fromPath[String]("vmId", None)) { (vmId) =>
+        controllers_VMServerController_startVM3_invoker.call(VMServerController_1.startVM(vmId))
       }
   
     // @LINE:10
-    case controllers_VMServerController_suspendVM4_route(params@_) =>
+    case controllers_VMServerController_stopVM4_route(params@_) =>
       call(params.fromPath[String]("vmName", None)) { (vmName) =>
-        controllers_VMServerController_suspendVM4_invoker.call(VMServerController_1.suspendVM(vmName))
+        controllers_VMServerController_stopVM4_invoker.call(VMServerController_1.stopVM(vmName))
       }
   
     // @LINE:11
-    case controllers_VMServerController_resetVM5_route(params@_) =>
+    case controllers_VMServerController_suspendVM5_route(params@_) =>
       call(params.fromPath[String]("vmName", None)) { (vmName) =>
-        controllers_VMServerController_resetVM5_invoker.call(VMServerController_1.resetVM(vmName))
+        controllers_VMServerController_suspendVM5_invoker.call(VMServerController_1.suspendVM(vmName))
       }
   
-    // @LINE:14
-    case controllers_WidgetController_listWidgets6_route(params@_) =>
-      call { 
-        controllers_WidgetController_listWidgets6_invoker.call(
-          req => WidgetController_0.listWidgets(req))
+    // @LINE:12
+    case controllers_VMServerController_resetVM6_route(params@_) =>
+      call(params.fromPath[String]("vmName", None)) { (vmName) =>
+        controllers_VMServerController_resetVM6_invoker.call(VMServerController_1.resetVM(vmName))
       }
   
     // @LINE:15
-    case controllers_WidgetController_createWidget7_route(params@_) =>
+    case controllers_WidgetController_listWidgets7_route(params@_) =>
       call { 
-        controllers_WidgetController_createWidget7_invoker.call(
+        controllers_WidgetController_listWidgets7_invoker.call(
+          req => WidgetController_0.listWidgets(req))
+      }
+  
+    // @LINE:16
+    case controllers_WidgetController_createWidget8_route(params@_) =>
+      call { 
+        controllers_WidgetController_createWidget8_invoker.call(
           req => WidgetController_0.createWidget(req))
       }
   
-    // @LINE:18
-    case controllers_Assets_versioned8_route(params@_) =>
+    // @LINE:19
+    case controllers_Assets_versioned9_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned8_invoker.call(Assets_2.versioned(path, file))
+        controllers_Assets_versioned9_invoker.call(Assets_2.versioned(path, file))
       }
   }
 }

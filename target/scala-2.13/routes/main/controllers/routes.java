@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/Lumi/Desktop/18.01/play-wat-vmware-testowy/play-wat-vmware-testowy/conf/routes
-// @DATE:Sat Mar 06 16:46:05 CET 2021
+// @DATE:Fri Mar 19 07:54:25 CET 2021
 
 package controllers;
 

@@ -21,53 +21,59 @@ import play.api.data.Field
 import play.data._
 import play.core.j.PlayFormsMagicForJava._
 
-object vmlist extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[Seq[models.VMInfo],play.twirl.api.HtmlFormat.Appendable] {
+object vmlist extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[Seq[models.VMInfo],String,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(vms: Seq[models.VMInfo]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(vms: Seq[models.VMInfo], server: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*2.1*/("""
-"""),_display_(/*3.2*/main("VMware VM List")/*3.24*/ {_display_(Seq[Any](format.raw/*3.26*/("""
-"""),format.raw/*4.1*/("""<div>
-  <table style="width:100%">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Cpu Count</th>
-      <th>Memory Size MiB</th>
-      <th>Power State</th>
-      <th>Actions</th>
-    </tr>
-    """),_display_(/*14.6*/for(vm <- vms) yield /*14.20*/{_display_(Seq[Any](format.raw/*14.21*/("""
-    """),format.raw/*15.5*/("""<tr>
-      <td>"""),_display_(/*16.12*/{vm.getId}),format.raw/*16.22*/("""</td>
-      <td>"""),_display_(/*17.12*/{vm.getName}),format.raw/*17.24*/("""</td>
-      <td>todo</td>
-      <td>todo</td>
-      <td>todo</td>
-      <td>
-        <ul>
-          <li><a href=""""),_display_(/*23.25*/controllers/*23.36*/.routes.VMServerController.startVM(vm.getId)),format.raw/*23.80*/("""">Start</a></li>
-          <li><a href=""""),_display_(/*24.25*/controllers/*24.36*/.routes.VMServerController.stopVM(vm.getId)),format.raw/*24.79*/("""">Stop</a></li>
-          <li><a href=""""),_display_(/*25.25*/controllers/*25.36*/.routes.VMServerController.suspendVM(vm.getId)),format.raw/*25.82*/("""">Suspend</a></li>
-          <li><a href=""""),_display_(/*26.25*/controllers/*26.36*/.routes.VMServerController.resetVM(vm.getId)),format.raw/*26.80*/("""">Reset</a></li>
-        </ul>
-      </td>
-    </tr>
-    """)))}),format.raw/*30.6*/("""
-  """),format.raw/*31.3*/("""</table>
-</div>
-""")))}))
+Seq[Any](format.raw/*1.43*/("""
+
+    """),_display_(/*3.6*/main("VMware VM List")/*3.28*/ {_display_(Seq[Any](format.raw/*3.30*/("""
+"""),format.raw/*4.1*/("""<style>
+    body"""),format.raw/*5.9*/("""{"""),format.raw/*5.10*/("""
+        """),format.raw/*6.9*/("""background-color: #CAFAFE;
+    """),format.raw/*7.5*/("""}"""),format.raw/*7.6*/("""
+"""),format.raw/*8.1*/("""</style>
+<body>
+
+
+        <div>
+            <h2>All Virtual Machines List at  """),_display_(/*13.48*/server),format.raw/*13.54*/(""" """),format.raw/*13.55*/("""HOST</h2>
+            <table class="styled-table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                """),_display_(/*23.18*/for(vm <- vms) yield /*23.32*/ {_display_(Seq[Any](format.raw/*23.34*/("""
+                    """),format.raw/*24.21*/("""<tr>
+                        <td>"""),_display_(/*25.30*/{
+                            vm.getId
+                        }),format.raw/*27.26*/("""</td>
+                        <td>"""),_display_(/*28.30*/{
+                            vm.getName
+                        }),format.raw/*30.26*/("""</td>
+                        <td><a href=""""),_display_(/*31.39*/controllers/*31.50*/.routes.VMServerController.getVMState(vm.getId, vm.getName)),format.raw/*31.109*/("""">Edit</a></td>
+                    </tr>
+                """)))}),format.raw/*33.18*/("""
+                """),format.raw/*34.17*/("""</tbody>
+            </table>
+        </div>
+</body>
+    """)))}))
       }
     }
   }
 
-  def render(vms:Seq[models.VMInfo]): play.twirl.api.HtmlFormat.Appendable = apply(vms)
+  def render(vms:Seq[models.VMInfo],server:String): play.twirl.api.HtmlFormat.Appendable = apply(vms,server)
 
-  def f:((Seq[models.VMInfo]) => play.twirl.api.HtmlFormat.Appendable) = (vms) => apply(vms)
+  def f:((Seq[models.VMInfo],String) => play.twirl.api.HtmlFormat.Appendable) = (vms,server) => apply(vms,server)
 
   def ref: this.type = this
 
@@ -76,11 +82,11 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2021-03-06T17:35:51.631
+                  DATE: 2021-03-19T09:47:53.982
                   SOURCE: C:/Users/Lumi/Desktop/18.01/play-wat-vmware-testowy/play-wat-vmware-testowy/app/views/vmlist.scala.html
-                  HASH: ac491146b7acdb0e1ac292e34960cb2d5911442b
-                  MATRIX: 921->1|1040->27|1067->29|1097->51|1136->53|1163->54|1392->257|1422->271|1461->272|1493->277|1536->293|1567->303|1611->320|1644->332|1785->446|1805->457|1870->501|1938->542|1958->553|2022->596|2089->636|2109->647|2176->693|2246->736|2266->747|2331->791|2419->849|2449->852
-                  LINES: 27->1|32->2|33->3|33->3|33->3|34->4|44->14|44->14|44->14|45->15|46->16|46->16|47->17|47->17|53->23|53->23|53->23|54->24|54->24|54->24|55->25|55->25|55->25|56->26|56->26|56->26|60->30|61->31
+                  HASH: f8e7e8e490dbe687b83aed8755161198d6657aac
+                  MATRIX: 928->1|1064->42|1098->51|1128->73|1167->75|1195->77|1238->94|1266->95|1302->105|1360->137|1387->138|1415->140|1526->224|1553->230|1582->231|1946->568|1976->582|2016->584|2066->606|2128->641|2215->707|2278->743|2367->811|2439->856|2459->867|2540->926|2632->987|2678->1005
+                  LINES: 27->1|32->1|34->3|34->3|34->3|35->4|36->5|36->5|37->6|38->7|38->7|39->8|44->13|44->13|44->13|54->23|54->23|54->23|55->24|56->25|58->27|59->28|61->30|62->31|62->31|62->31|64->33|65->34
                   -- GENERATED --
               */
           

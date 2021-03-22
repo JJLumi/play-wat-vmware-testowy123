@@ -1,4 +1,5 @@
 @(vm: VMPowerState)
+<!DOCTYPE html>
 
 @main("VMware VM List") {
     <div>
@@ -25,7 +26,7 @@
                 }</td>
                 <td>
                     <ul>
-                        <li><a href="@controllers.routes.VMServerController.startVM(vm.getId)">Start</a></li>
+                        <li><a href="@controllers.routes.VMServerController.startVM(vm.getId)"><img src="images/start.jpg" /></a></li>
                         <li><a href="@controllers.routes.VMServerController.stopVM(vm.getId)">Stop</a></li>
                         <li><a href="@controllers.routes.VMServerController.suspendVM(vm.getId)">Suspend</a></li>
                         <li><a href="@controllers.routes.VMServerController.resetVM(vm.getId)">Reset</a></li>

@@ -208,7 +208,7 @@ public class SSHService {
         try {
             ssh.authPassword(connection.getUsername(), connection.getPassword());
             session = ssh.startSession();
-            final Command cmd = session.exec("vim-cmd vmsvc/power.getstate " + vmId); //tutaj przekazać VMid
+            final Command cmd = session.exec("vim-cmd vmsvc/power.getstate " + vmId + " | tail -1" ); // | tail -1 aby pokazac sam state
             pow = IOUtils.readFully(cmd.getInputStream()).toString();
             cmd.join(5, TimeUnit.SECONDS);
             System.out.println(pow);

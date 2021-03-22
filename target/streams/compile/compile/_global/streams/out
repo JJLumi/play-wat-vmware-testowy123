@@ -1,4 +1,4 @@
-[0m[[0m[33mwarn[0m] [0m[0mC:\Users\Lumi\Desktop\18.01\play-wat-vmware-testowy\play-wat-vmware-testowy\app\views\index.scala.html:14:11: object JavaConverters in package collection is deprecated (since 2.13.0): Use `scala.jdk.CollectionConverters` instead[0m
-[0m[[0m[33mwarn[0m] [0m[0m    @form.globalErrors.asScala.map { error: play.data.validation.ValidationError =>[0m
-[0m[[0m[33mwarn[0m] [0m[0m          ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\Lumi\Desktop\18.01\play-wat-vmware-testowy\play-wat-vmware-testowy\app\views\vmstate.scala.html:28:131: play.api.mvc.Call does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m                        <li><a rel="shortcut icon" type="image/png" href="@controllers.routes.VMServerController.startVM(vm.getId)("images/favicon.png")"></a></li>[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

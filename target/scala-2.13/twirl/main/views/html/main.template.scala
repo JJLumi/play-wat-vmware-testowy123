@@ -58,7 +58,7 @@ Seq[Any](format.raw/*2.1*/("""
 
               /*
                   -- GENERATED --
-                  DATE: 2021-03-06T16:46:05.915
+                  DATE: 2021-03-19T07:54:25.282
                   SOURCE: C:/Users/Lumi/Desktop/18.01/play-wat-vmware-testowy/play-wat-vmware-testowy/app/views/main.scala.html
                   HASH: 9cf057ea97dd3945a9b063607d75af88655beec4
                   MATRIX: 912->1|1036->32|1063->33|1150->94|1175->99|1263->161|1277->167|1339->208|1426->269|1440->275|1500->314|1557->345|1585->352|1617->357

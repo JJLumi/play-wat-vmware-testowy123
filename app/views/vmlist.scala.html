@@ -1,8 +1,16 @@
 @(vms: Seq[models.VMInfo], server: String)
 
     @main("VMware VM List") {
+<style>
+    body{
+        background-color: #CAFAFE;
+    }
+</style>
+<body>
+
+
         <div>
-            <h2>VM List at @server</h2>
+            <h2>All Virtual Machines List at  @server HOST</h2>
             <table class="styled-table" style="width: 100%">
                 <thead>
                     <tr>
@@ -26,4 +34,5 @@
                 </tbody>
             </table>
         </div>
+</body>
     }

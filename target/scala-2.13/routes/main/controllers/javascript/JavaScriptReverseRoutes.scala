@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/Lumi/Desktop/18.01/play-wat-vmware-testowy/play-wat-vmware-testowy/conf/routes
-// @DATE:Sat Mar 06 16:46:05 CET 2021
+// @DATE:Fri Mar 19 07:54:25 CET 2021
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -19,7 +19,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:8
+    // @LINE:9
     def startVM: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VMServerController.startVM",
       """
@@ -29,7 +29,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:11
     def suspendVM: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VMServerController.suspendVM",
       """
@@ -39,7 +39,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:11
+    // @LINE:8
+    def getVMState: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.VMServerController.getVMState",
+      """
+        function(vmId0,name1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "vm" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("vmId", vmId0), (""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("name", name1)])})
+        }
+      """
+    )
+  
+    // @LINE:12
     def resetVM: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VMServerController.resetVM",
       """
@@ -69,7 +79,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:10
     def stopVM: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.VMServerController.stopVM",
       """
@@ -81,7 +91,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:18
+  // @LINE:19
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -89,7 +99,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:18
+    // @LINE:19
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -101,7 +111,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:14
+  // @LINE:15
   class ReverseWidgetController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -109,7 +119,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:15
+    // @LINE:16
     def createWidget: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WidgetController.createWidget",
       """
@@ -119,7 +129,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:14
+    // @LINE:15
     def listWidgets: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.WidgetController.listWidgets",
       """
