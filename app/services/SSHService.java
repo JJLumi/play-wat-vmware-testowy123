@@ -1,5 +1,6 @@
 package services;
 
+import models.HostParam;
 import models.VMConnection;
 import models.VMInfo;
 import models.VMPowerState;
@@ -230,4 +231,35 @@ public class SSHService {
         String state = res; //todo: wyciągnij z wyniku komendy 'res' sam state wirtualnej  maszyny
         return new VMPowerState(vmId, vmName, state);
     }
+
+    // vim-cmd hostsvc/hosthardware | grep memorySize | awk '{print $3}' | head -1
+    public HostParam getHostMem (String mem) throws IOException {
+        final SSHClient ssh = new SSHClient();
+        ssh.addHostKeyVerifier(new PromiscuousVerifier());
+        ssh.connect(connection.getServer(), connection.getPort());
+        Session session = null;
+        String mem = null;
+        try {
+            ssh.authPassword(connection.getUsername(), connection.getPassword());
+            session = ssh.startSession();
+            final Command cmd = session.exec("hostsvc/hosthardware | grep memorySize | awk '{print $3}' | head -1" );
+            mem = IOUtils.readFully(cmd.getInputStream()).toString();
+            cmd.join(5, TimeUnit.SECONDS);
+            System.out.println(mem);
+            con.writer().print("\n** exit status: " + cmd.getExitStatus());
+            return stringToPowerState(mem);
+        } finally {
+            try {
+                if (session != null) {
+                    session.close();
+                }
+            } catch (IOException e) {
+                // Do Nothing
+            }
+            ssh.disconnect();
+        }
+
+    }
+
+
 }
